@@ -14,23 +14,47 @@ public class RandomMovement : MonoBehaviour
 
     public float speed;
 
+    public bool waits;
+    private bool waiting;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        targetPosition = GetRandomPosition();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if((Vector2)transform.position != targetPosition)
+        if (!waiting)
         {
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-        } else
-        {
-            targetPosition = GetRandomPosition();
+
+            if ((Vector2)transform.position != targetPosition)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            }
+            else
+            {
+                targetPosition = GetRandomPosition();
+                StartCoroutine(Wait());
+            }
         }
     }
+
+    IEnumerator Wait()
+    {
+        waiting = true;
+        yield return new WaitForSeconds(GetRandomPauseTime());
+        waiting = false;
+    }
+
+    float GetRandomPauseTime()
+    {
+        float time = Random.Range(0.5f, 2f);
+        return time;
+    }
+
 
     Vector2 GetRandomPosition()
     {
@@ -39,8 +63,4 @@ public class RandomMovement : MonoBehaviour
         return new Vector2(randomX, randomY);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
 }
