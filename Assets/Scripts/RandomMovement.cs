@@ -14,6 +14,9 @@ public class RandomMovement : MonoBehaviour
 
     public float speed;
 
+    public float minWait;
+    public float maxWait;
+
     public bool waits;
     private bool waiting;
 
@@ -21,7 +24,7 @@ public class RandomMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        waiting = false;
     }
 
     // Update is called once per frame
@@ -37,7 +40,10 @@ public class RandomMovement : MonoBehaviour
             else
             {
                 targetPosition = GetRandomPosition();
-                StartCoroutine(Wait());
+                if (waits)
+                {
+                    StartCoroutine(Wait());
+                }
             }
         }
     }
@@ -51,7 +57,7 @@ public class RandomMovement : MonoBehaviour
 
     float GetRandomPauseTime()
     {
-        float time = Random.Range(0.5f, 2f);
+        float time = Random.Range(maxWait, minWait);
         return time;
     }
 
