@@ -485,9 +485,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3843623681076548194, guid: c7ffe5c406d19ca498dd4c787f14d435, type: 3}
+      propertyPath: speed
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3843623681076548199, guid: c7ffe5c406d19ca498dd4c787f14d435, type: 3}
       propertyPath: m_Name
       value: Rat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082160157632988268, guid: c7ffe5c406d19ca498dd4c787f14d435, type: 3}
+      propertyPath: draggableRarity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082160157632988268, guid: c7ffe5c406d19ca498dd4c787f14d435, type: 3}
+      propertyPath: draggableDuration
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082160157632988268, guid: c7ffe5c406d19ca498dd4c787f14d435, type: 3}
+      propertyPath: draggableProbability
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7ffe5c406d19ca498dd4c787f14d435, type: 3}
