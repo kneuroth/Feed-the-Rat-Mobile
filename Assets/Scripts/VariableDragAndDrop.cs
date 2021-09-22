@@ -19,6 +19,7 @@ public class VariableDragAndDrop : MonoBehaviour
     private bool draggable;
 
     DragAndDrop dragAndDrop;
+
     // Start is called before the first frame update
     void Start()
     {
