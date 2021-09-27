@@ -25,4 +25,10 @@ public class LevelTimer : MonoBehaviour
         string seconds = (t % 60).ToString("00.00");
         timerText.text = minutes + ":" + seconds;
     }
+
+    public int GetSeconds()
+    {
+        int t = (int) (Time.time - startTime);
+        return (t % 60);
+    }
 }
