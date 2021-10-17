@@ -10,6 +10,7 @@ public class Snack : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     public Sprite[] spriteArray;
+    public Rat rat;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,7 @@ public class Snack : MonoBehaviour
         {
             Debug.Log("colllide");
             snackProgress--;
+            rat.FeedRat();
         }
     }
 }

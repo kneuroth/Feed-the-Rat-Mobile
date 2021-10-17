@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0e8d4e564249345ba6ed9949233052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelTimer: {fileID: 0}
   gameObject: {fileID: 8695602678945182587}
   spawnInterval: 0
   spawnType: 0
@@ -68,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2693510152053068044, guid: 83dabe6f56fb11e48a46088f82fc31f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2693510152053068044, guid: 83dabe6f56fb11e48a46088f82fc31f9, type: 3}
       propertyPath: m_LocalRotation.w
