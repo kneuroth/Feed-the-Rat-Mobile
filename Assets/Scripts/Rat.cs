@@ -20,6 +20,5 @@ public class Rat : MonoBehaviour
     public void FeedRat()
     {
         food++;
-        Debug.Log(food);
     }
 }
