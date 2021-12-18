@@ -5,7 +5,7 @@ using UnityEngine;
 public class DragAndDrop : MonoBehaviour
 {
     public bool active;
-    bool moveAllowed;
+    bool dragAllowed;
     Collider2D col;
     // Start is called before the first frame update
     void Start()
@@ -28,27 +28,34 @@ public class DragAndDrop : MonoBehaviour
                     Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition);
                     if (col == touchedCollider)
                     {
-                        moveAllowed = true;
+                        SetDragAllowed(true);
                     }
                 }
                 if (touch.phase == TouchPhase.Moved)
                 {
-                    if (moveAllowed == true)
+                    if (GetDragAllowed() == true)
                     {
                         transform.position = new Vector2(touchPosition.x, touchPosition.y);
                     }
                 }
                 if (touch.phase == TouchPhase.Ended)
                 {
-                    moveAllowed = false;
+                    SetDragAllowed(false);
                 }
             }
         }
 
     }
 
-    void setMoveAllowed(bool allow)
+
+    void SetDragAllowed(bool allow)
     {
-        moveAllowed = allow;
+        dragAllowed = allow;
+    }
+     
+    // True if finger is on the game object, false if not
+    public bool GetDragAllowed()
+    {
+        return dragAllowed;
     }
 }

@@ -12,11 +12,19 @@ public class Snack : MonoBehaviour
     public Sprite[] spriteArray;
     public Rat rat;
 
+    private DragAndDrop dragAndDrop;
+    private RandomMovement randomMovement;
+
+    private bool dragging = false;
+
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         snackMaxProgress = snackProgress;
+
+        dragAndDrop = GetComponent<DragAndDrop>();
+        randomMovement = GetComponent<RandomMovement>();
     }
 
     // Update is called once per frame
@@ -33,13 +41,20 @@ public class Snack : MonoBehaviour
         {
             spriteRenderer.sprite = spriteArray[spriteIndex];
         }
+
+        bool dragUpdated = dragAndDrop.GetDragAllowed();
+        if (dragging != dragUpdated)
+        {
+            dragging = dragUpdated;
+            randomMovement.SetMoveEnabled(!dragging);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.tag == "Rat")
         {
-            Debug.Log("colllide");
+            //Debug.Log("colllide");
             snackProgress--;
             rat.FeedRat();
         }

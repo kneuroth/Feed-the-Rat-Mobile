@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum DestinationBehavior  { destroy, newTargetPosition};
+
 public class RandomMovement : MonoBehaviour
 {
     public float minX;
@@ -14,38 +16,53 @@ public class RandomMovement : MonoBehaviour
 
     public float speed;
 
+
+
     public float minWait;
     public float maxWait;
 
     public bool waits;
     private bool waiting;
 
+    public DestinationBehavior destinationBehavior;
+
+    private bool moveEnabled = true;
+
 
     // Start is called before the first frame update
     void Start()
     {
         waiting = false;
+        targetPosition = GetRandomPosition();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!waiting)
+        if (GetMoveEnabled())
         {
-
-            if ((Vector2)transform.position != targetPosition)
+            if (!waiting)
             {
-                transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-            }
-            else
-            {
-                targetPosition = GetRandomPosition();
-                if (waits)
+                if ((Vector2)transform.position != targetPosition)
                 {
-                    StartCoroutine(Wait());
+                    transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+                }
+                else if (destinationBehavior == DestinationBehavior.newTargetPosition)
+                {
+                    targetPosition = GetRandomPosition();
+                    //Debug.Log(targetPosition);
+                    if (waits)
+                    {
+                        StartCoroutine(Wait());
+                    }
+                }
+                else if (destinationBehavior == DestinationBehavior.destroy)
+                {
+                    Destroy(gameObject);
                 }
             }
         }
+        
     }
 
     IEnumerator Wait()
@@ -67,6 +84,16 @@ public class RandomMovement : MonoBehaviour
         float randomX = Random.Range(minX, maxX);
         float randomY = Random.Range(minY, maxY);
         return new Vector2(randomX, randomY);
+    }
+
+    public void SetMoveEnabled(bool move)
+    {
+        moveEnabled = move;
+    }
+
+    public bool GetMoveEnabled()
+    {
+        return moveEnabled;
     }
 
 }

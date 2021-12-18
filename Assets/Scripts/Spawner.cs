@@ -7,7 +7,16 @@ public enum SpawnType { spawnAfterSpawn, spawnAfterDeath };
 public class Spawner : MonoBehaviour
 {
     public LevelTimer levelTimer;
-    public GameObject gameObject;
+    public GameObject spawnedGameObject;
+       
+    //Spawn area
+    public float minX;
+    public float maxX;
+    public float minY;
+    public float maxY;
+
+    public bool spawnArea;
+
     // Number of seconds to wait to spawn
     public int spawnInterval;
 
@@ -24,9 +33,9 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startPosition = gameObject.transform.position;
-        gameObject.SetActive(false);
-        //Set first object to inactive so it doesn't destroy the gameObject reference so clones can be created
+        startPosition = spawnedGameObject.transform.position;
+        spawnedGameObject.SetActive(false);
+        //Set first object to inactive so it doesn't destroy the spawnedGameObject reference so clones can be created
 
         Spawn();
     }
@@ -54,8 +63,20 @@ public class Spawner : MonoBehaviour
 
     public void Spawn()
     {
-        Instantiate(gameObject, startPosition, Quaternion.identity).SetActive(true);
+        if (spawnArea)
+        {
+            startPosition = GetRandomPosition();
+        }
+        Instantiate(spawnedGameObject, startPosition, Quaternion.identity).SetActive(true);
         spawnCount--;
+    }
+
+    Vector2 GetRandomPosition()
+    {
+        Debug.Log("Spawner");
+        float randomX = Random.Range(minX, maxX);
+        float randomY = Random.Range(minY, maxY);
+        return new Vector2(randomX, randomY);
     }
 }
 
