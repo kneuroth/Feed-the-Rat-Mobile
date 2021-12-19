@@ -21,11 +21,14 @@ public class LinearMovement : MonoBehaviour, IMovement
 
     public void Step()
     {
-        transform.position = Vector2.MoveTowards(transform.position, goal.position, speed * Time.deltaTime);
-        if (Vector2.Distance((Vector2)transform.position, (Vector2)goal.position) < 1)
+        if (canMove)
         {
-            Destroy(gameObject);
-        }
+            transform.position = Vector2.MoveTowards(transform.position, goal.position, speed * Time.deltaTime);
+            if (Vector2.Distance((Vector2)transform.position, (Vector2)goal.position) < 1)
+            {
+                gameObject.SendMessage("Delete", DestroyType.offScreen);
+            }
+        }   
     }
 
     

@@ -5,10 +5,12 @@ using UnityEngine;
 public class Rat : MonoBehaviour
 {
     private int food;
+
+    Hunger hunger;
     // Start is called before the first frame update
     void Start()
     {
-        
+        hunger = GetComponent<Hunger>();
     }
 
     // Update is called once per frame
@@ -17,8 +19,9 @@ public class Rat : MonoBehaviour
         
     }
 
-    public void FeedRat()
+    //Returns true if food was eated
+    public bool FeedRat(int foodAmount)
     {
-        food++;
+        return hunger.Eat(foodAmount);
     }
 }

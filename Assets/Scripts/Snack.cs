@@ -5,18 +5,21 @@ using UnityEngine;
 public class Snack : MonoBehaviour
 {
 
-    public int snackProgress = 100;
-    private int snackMaxProgress;
+    public int snackBites = 5;
+    public float timeToEatBite = 0.25f;
+    public int biteValue = 1;
+    private int snackMaxBites;
 
     private SpriteRenderer spriteRenderer;
     public Sprite[] spriteArray;
     public Rat rat;
 
-
     private DragAndDrop dragAndDrop;
     private IMovement movement;
 
     private bool dragging = false;
+
+    private float elapsed;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,7 @@ public class Snack : MonoBehaviour
 
         //rigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        snackMaxProgress = snackProgress;
+        snackMaxBites = snackBites;
 
         dragAndDrop = GetComponent<DragAndDrop>();
         movement = GetComponent<IMovement>();
@@ -36,18 +39,15 @@ public class Snack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
+        movement.Step();
 
-        if (movement.canMove)
+        if(snackBites <= 0)
         {
-            movement.Step();
+            Delete(DestroyType.ate);
         }
-
-        if(snackProgress <= 0)
-        {
-            Destroy(gameObject);
-        }
-        //spriteRenderer.sprite = spriteArray[snackProgress * spriteArray.Length / snackMaxProgress];
-        int spriteIndex = (snackProgress * spriteArray.Length / snackMaxProgress) - 1;
+        //spriteRenderer.sprite = spriteArray[snackBites * spriteArray.Length / snackMaxBites];
+        int spriteIndex = (snackBites * spriteArray.Length / snackMaxBites) - 1;
         if(spriteIndex >= 0)
         {
             spriteRenderer.sprite = spriteArray[spriteIndex];
@@ -74,9 +74,28 @@ public class Snack : MonoBehaviour
     {
         if(collision.tag == "Rat")
         {
-            //Debug.Log("colllide");
-            snackProgress--;
-            rat.FeedRat();
+            elapsed += Time.fixedDeltaTime;
+            if (elapsed > timeToEatBite)
+            {
+                if (rat.FeedRat(biteValue))
+                {
+                    snackBites--;
+                }
+                elapsed = 0;
+            }
         }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Rat")
+        {
+            elapsed = 0;
+        }
+    }
+
+    public void Delete(DestroyType destroyType)
+    {
+        Destroy(gameObject);
     }
 }

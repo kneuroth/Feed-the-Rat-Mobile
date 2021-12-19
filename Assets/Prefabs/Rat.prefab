@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3843623681076548192}
   - component: {fileID: 3843623681076548194}
   - component: {fileID: 3843623681076548195}
-  - component: {fileID: -885121668306165982}
+  - component: {fileID: 5099439000139143730}
   m_Layer: 0
   m_Name: Rat
   m_TagString: Rat
@@ -106,7 +106,6 @@ MonoBehaviour:
   maxWait: 6
   waits: 1
   destinationBehavior: 0
-  dragAndDrop: {fileID: 0}
 --- !u!61 &3843623681076548195
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -133,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &-885121668306165982
+--- !u!114 &5099439000139143730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,7 +141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3843623681076548199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e5fc4f3ba7ff040b55a8fbe6eabf19, type: 3}
+  m_Script: {fileID: 11500000, guid: 1dd75a7940e084e449eb1d2e1775b21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
+  hungriness: 500
