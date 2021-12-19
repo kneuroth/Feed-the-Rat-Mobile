@@ -7,6 +7,11 @@ public class DragAndDrop : MonoBehaviour
     public bool active;
     bool dragAllowed;
     Collider2D col;
+
+    private Vector2 currentPos;
+    private Vector2 lastPos;
+
+    private bool letGo = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,21 +41,44 @@ public class DragAndDrop : MonoBehaviour
                     if (GetDragAllowed() == true)
                     {
                         transform.position = new Vector2(touchPosition.x, touchPosition.y);
+                        currentPos = transform.position;
                     }
                 }
                 if (touch.phase == TouchPhase.Ended)
                 {
+                    lastPos = transform.position;
                     SetDragAllowed(false);
+                    letGo = true;
                 }
             }
         }
 
     }
 
-
-    void SetDragAllowed(bool allow)
+    public void SetLetGo(bool lg)
     {
-        dragAllowed = allow;
+        letGo = lg;
+    }
+
+    public bool GetLetGo()
+    {
+        return letGo;
+    }
+
+    public Vector2 GetCurrentPos()
+    {
+        return currentPos;
+    }
+
+    public Vector2 GetLastPos()
+    {
+        return lastPos;
+    }
+
+
+    void SetDragAllowed(bool da)
+    {
+        dragAllowed = da;
     }
      
     // True if finger is on the game object, false if not

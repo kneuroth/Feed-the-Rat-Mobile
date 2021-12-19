@@ -12,24 +12,35 @@ public class Snack : MonoBehaviour
     public Sprite[] spriteArray;
     public Rat rat;
 
+
     private DragAndDrop dragAndDrop;
-    private RandomMovement randomMovement;
+    private IMovement movement;
 
     private bool dragging = false;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        //rigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         snackMaxProgress = snackProgress;
 
         dragAndDrop = GetComponent<DragAndDrop>();
-        randomMovement = GetComponent<RandomMovement>();
+        movement = GetComponent<IMovement>();
+
+        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (movement.canMove)
+        {
+            movement.Step();
+        }
 
         if(snackProgress <= 0)
         {
@@ -42,13 +53,22 @@ public class Snack : MonoBehaviour
             spriteRenderer.sprite = spriteArray[spriteIndex];
         }
 
+        // if dragAndDrop script detects change in dragAllowed variable update snack variable and disable movement script
         bool dragUpdated = dragAndDrop.GetDragAllowed();
         if (dragging != dragUpdated)
         {
             dragging = dragUpdated;
-            randomMovement.SetMoveEnabled(!dragging);
+            movement.canMove = !dragging;
+        }
+
+        // if it was just released
+        if (dragAndDrop.GetLetGo())
+        {
+            dragAndDrop.SetLetGo(false);
         }
     }
+
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {

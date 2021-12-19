@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2693510152053068044}
   - component: {fileID: 2693510152053068045}
-  - component: {fileID: 2693510152053068032}
   - component: {fileID: 2693510152053068033}
   - component: {fileID: 2693510152053068034}
   - component: {fileID: 1211820230936375840}
+  - component: {fileID: 374963012674676345}
+  - component: {fileID: 9191171120108493830}
   m_Layer: 0
   m_Name: Snack
   m_TagString: Snack
@@ -86,19 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2693510152053068032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2693510152053068046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e5fc4f3ba7ff040b55a8fbe6eabf19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 1
 --- !u!61 &2693510152053068033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -166,3 +154,30 @@ MonoBehaviour:
   - {fileID: 21300000, guid: eab28186e7de3524c9267d6d21b47852, type: 3}
   - {fileID: 21300000, guid: 56d3e3c04298ad54b8755e0a4ba09746, type: 3}
   rat: {fileID: 0}
+--- !u!114 &374963012674676345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2693510152053068046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61e5fc4f3ba7ff040b55a8fbe6eabf19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+--- !u!114 &9191171120108493830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2693510152053068046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4390e3a6e9e97844b768d2c4e60de57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goal: {fileID: 0}
+  destinationBehavior: 0

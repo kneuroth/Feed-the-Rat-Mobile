@@ -18,16 +18,17 @@ public class Spawner : MonoBehaviour
     public bool spawnArea;
 
     // Number of seconds to wait to spawn
-    public int spawnInterval;
+    public int spawnInterval = 5;
 
     // Number of times to spawn (-1 for infinite)
-    public int spawnCount; 
+    public int spawnCount = -1; 
 
     public SpawnType spawnType;
 
     Vector3 startPosition;
 
     private bool spawning = true;
+
 
     int seconds = 0;
     // Start is called before the first frame update
@@ -73,7 +74,6 @@ public class Spawner : MonoBehaviour
 
     Vector2 GetRandomPosition()
     {
-        Debug.Log("Spawner");
         float randomX = Random.Range(minX, maxX);
         float randomY = Random.Range(minY, maxY);
         return new Vector2(randomX, randomY);
