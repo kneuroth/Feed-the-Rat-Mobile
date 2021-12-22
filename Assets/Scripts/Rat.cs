@@ -24,4 +24,9 @@ public class Rat : MonoBehaviour
     {
         return hunger.Eat(foodAmount);
     }
+
+    public bool isFull()
+    {
+        return hunger.isFull();
+    }
 }

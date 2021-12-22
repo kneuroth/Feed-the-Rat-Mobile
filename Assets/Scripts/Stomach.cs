@@ -18,8 +18,6 @@ public class Stomach : MonoBehaviour
     void Update()
     {
         int fullPercent = (int)ratHunger.fullPercent() / 100;
-        Debug.Log(((fullPercent - (fullPercent % 10)) / 10));
-        //Debug.Log(((fullPercent - (fullPercent % 10)) / 10) - 1);
         image.sprite = spriteArray[((fullPercent - (fullPercent%10)) / 10)];
     }
 }
