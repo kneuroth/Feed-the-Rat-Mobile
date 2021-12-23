@@ -17,7 +17,9 @@ public class Stomach : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int fullPercent = (int)ratHunger.fullPercent() / 100;
-        image.sprite = spriteArray[((fullPercent - (fullPercent%10)) / 10)];
+        int fullPercent = ratHunger.fullPercent();
+        int fullLevel = fullPercent / 10 > 0 ? fullPercent / 10 - 1 : 0;
+
+        image.sprite =  spriteArray[fullLevel];
     }
 }

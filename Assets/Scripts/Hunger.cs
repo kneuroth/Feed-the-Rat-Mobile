@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Hunger : MonoBehaviour
 {
-
+    public TMPro.TextMeshProUGUI tummyText;
     public int hungriness = 20;
     private int maxHungriness;
     private void Start()
     {
         maxHungriness = hungriness;
+        tummyText.text = "0%";
     }
 
     // Returns true if food was eated
@@ -18,6 +19,7 @@ public class Hunger : MonoBehaviour
         if (!isFull())
         {
             hungriness = hungriness - foodAmount;
+            tummyText.text = fullPercent() + "%";
             return true;
         }
         return false;
@@ -28,8 +30,9 @@ public class Hunger : MonoBehaviour
         return hungriness <= 0;
     }
 
-    public float fullPercent()
+    public int fullPercent()
     {
-        return Mathf.Abs(100 - (hungriness * 100 / maxHungriness * 100) );
+        
+        return (int)Mathf.Round(Mathf.Abs(1 - ((float)hungriness / (float)maxHungriness)) * 100);
     }
 }

@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
     {
         if (rat.isFull())
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

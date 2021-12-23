@@ -69,7 +69,9 @@ public class Spawner : MonoBehaviour
             startPosition = GetRandomPosition();
         }
         Instantiate(spawnedGameObject, startPosition, Quaternion.identity).SetActive(true);
-        spawnCount--;
+        if(spawnCount >= 0){
+            spawnCount--;
+        }
     }
 
     Vector2 GetRandomPosition()
