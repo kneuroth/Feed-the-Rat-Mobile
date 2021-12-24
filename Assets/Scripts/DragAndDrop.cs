@@ -5,12 +5,12 @@ using UnityEngine;
 public class DragAndDrop : MonoBehaviour
 {
     public bool active;
-    bool dragAllowed;
     Collider2D col;
 
     private Vector2 currentPos;
     private Vector2 lastPos;
 
+    private bool dragging;
     private bool letGo = false;
     // Start is called before the first frame update
     void Start()
@@ -33,12 +33,12 @@ public class DragAndDrop : MonoBehaviour
                     Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition);
                     if (col == touchedCollider)
                     {
-                        SetDragAllowed(true);
+                        SetDragging(true);
                     }
                 }
                 if (touch.phase == TouchPhase.Moved)
                 {
-                    if (GetDragAllowed() == true)
+                    if (GetDragging() == true)
                     {
                         transform.position = new Vector2(touchPosition.x, touchPosition.y);
                         currentPos = transform.position;
@@ -47,7 +47,7 @@ public class DragAndDrop : MonoBehaviour
                 if (touch.phase == TouchPhase.Ended)
                 {
                     lastPos = transform.position;
-                    SetDragAllowed(false);
+                    SetDragging(false);
                     letGo = true;
                 }
             }
@@ -76,14 +76,14 @@ public class DragAndDrop : MonoBehaviour
     }
 
 
-    void SetDragAllowed(bool da)
+    void SetDragging(bool da)
     {
-        dragAllowed = da;
+        dragging = da;
     }
      
     // True if finger is on the game object, false if not
-    public bool GetDragAllowed()
+    public bool GetDragging()
     {
-        return dragAllowed;
+        return dragging;
     }
 }

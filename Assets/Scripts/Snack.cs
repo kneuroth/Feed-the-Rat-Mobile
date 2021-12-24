@@ -54,7 +54,7 @@ public class Snack : MonoBehaviour
         }
 
         // if dragAndDrop script detects change in dragAllowed variable update snack variable and disable movement script
-        bool dragUpdated = dragAndDrop.GetDragAllowed();
+        bool dragUpdated = dragAndDrop.GetDragging();
         if (dragging != dragUpdated)
         {
             dragging = dragUpdated;
@@ -74,6 +74,8 @@ public class Snack : MonoBehaviour
     {
         if(collision.tag == "Rat")
         {
+            rat.GrabSnack(gameObject);
+            DisableMovement();
             elapsed += Time.fixedDeltaTime;
             if (elapsed > timeToEatBite)
             {
@@ -90,6 +92,7 @@ public class Snack : MonoBehaviour
     {
         if (collision.tag == "Rat")
         {
+            EnableMovement();
             elapsed = 0;
         }
     }
@@ -97,5 +100,15 @@ public class Snack : MonoBehaviour
     public void Delete(DestroyType destroyType)
     {
         Destroy(gameObject);
+    }
+
+    public void DisableMovement()
+    {
+        movement.canMove = false;
+    }
+
+    public void EnableMovement()
+    {
+        movement.canMove = true;
     }
 }

@@ -29,4 +29,9 @@ public class Rat : MonoBehaviour
     {
         return hunger.isFull();
     }
+
+    public void GrabSnack(GameObject go)
+    {
+        go.transform.parent = transform;
+    }
 }
