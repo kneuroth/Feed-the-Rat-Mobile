@@ -70,11 +70,18 @@ public class Snack : MonoBehaviour
 
 
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Rat")
         {
             rat.GrabSnack(gameObject);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Rat" && rat.IsHolding(gameObject))
+        {
             DisableMovement();
             elapsed += Time.fixedDeltaTime;
             if (elapsed > timeToEatBite)
@@ -92,6 +99,7 @@ public class Snack : MonoBehaviour
     {
         if (collision.tag == "Rat")
         {
+            rat.LetGoSnack(gameObject);
             EnableMovement();
             elapsed = 0;
         }

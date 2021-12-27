@@ -7,16 +7,21 @@ public class Rat : MonoBehaviour
     private int food;
 
     Hunger hunger;
+
+    private List<GameObject> holdingList;
+    public int maxHolding = 2;
+
     // Start is called before the first frame update
     void Start()
     {
         hunger = GetComponent<Hunger>();
+        holdingList = new List<GameObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(holdingList.Count);
     }
 
     //Returns true if food was eated
@@ -32,6 +37,24 @@ public class Rat : MonoBehaviour
 
     public void GrabSnack(GameObject go)
     {
-        go.transform.parent = transform;
+        if(holdingList.Count < maxHolding)
+        {
+            holdingList.Add(go);
+            go.transform.parent = transform;
+        }
+    }
+
+    public void LetGoSnack(GameObject go)
+    {
+        if (IsHolding(go))
+        {
+            holdingList.Remove(go);
+            go.transform.parent = null;
+        }
+    }
+
+    public bool IsHolding(GameObject go)
+    {
+        return holdingList.Contains(go);
     }
 }
