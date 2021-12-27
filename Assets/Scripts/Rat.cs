@@ -21,7 +21,6 @@ public class Rat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(holdingList.Count);
     }
 
     //Returns true if food was eated
