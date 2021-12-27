@@ -21,6 +21,9 @@ public class Snack : MonoBehaviour
 
     private float elapsed;
 
+    private bool resetDragAndDrop = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,15 +69,24 @@ public class Snack : MonoBehaviour
         {
             dragAndDrop.SetLetGo(false);
         }
+
+        if (resetDragAndDrop)
+        {
+            resetDragAndDrop = false;
+        }
+    
     }
 
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Rat")
+        if (collision.tag == "Rat")
         {
-            rat.GrabSnack(gameObject);
+            if (rat.GrabSnack(gameObject))
+            {
+                dragAndDrop.active = false;
+            }
         }
     }
 
@@ -83,6 +95,7 @@ public class Snack : MonoBehaviour
         if (collision.tag == "Rat" && rat.IsHolding(gameObject))
         {
             DisableMovement();
+            Teleport(rat.eatingTransform);
             elapsed += Time.fixedDeltaTime;
             if (elapsed > timeToEatBite)
             {
@@ -118,5 +131,11 @@ public class Snack : MonoBehaviour
     public void EnableMovement()
     {
         movement.canMove = true;
+    }
+
+    public void Teleport(Transform trans)
+    {
+        transform.position = trans.position;
+        transform.parent = trans;
     }
 }

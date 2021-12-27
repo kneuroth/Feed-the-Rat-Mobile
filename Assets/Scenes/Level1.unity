@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHolding: 2
+  eatingTransform: {fileID: 814416011}
 --- !u!114 &669167308 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5099439000139143730, guid: c7ffe5c406d19ca498dd4c787f14d435, type: 3}
@@ -308,6 +309,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &814416011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3134531007711323925, guid: c7ffe5c406d19ca498dd4c787f14d435, type: 3}
+  m_PrefabInstance: {fileID: 1919806240}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &877828325 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8695602678945182587, guid: 7bfa3b50ef8ef954ca6d21082187381d, type: 3}
@@ -818,6 +824,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2263861616676647743, guid: c7ffe5c406d19ca498dd4c787f14d435, type: 3}
+      propertyPath: m_Name
+      value: EatingTransform
+      objectReference: {fileID: 0}
     - target: {fileID: 3843623681076548192, guid: c7ffe5c406d19ca498dd4c787f14d435, type: 3}
       propertyPath: m_SortingOrder
       value: 0

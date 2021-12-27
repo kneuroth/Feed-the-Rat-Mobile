@@ -21,37 +21,43 @@ public class DragAndDrop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (active)
-        {
-            if (Input.touchCount > 0)
-            {
-                Touch touch = Input.GetTouch(0);
-                Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
-                if (touch.phase == TouchPhase.Began)
+        if (Input.touchCount > 0)
+        {
+                   
+            Touch touch = Input.GetTouch(0);
+            Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+                    
+            if (touch.phase == TouchPhase.Began)
+            {
+                active = true;
+                Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition);
+                if (col == touchedCollider)
                 {
-                    Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition);
-                    if (col == touchedCollider)
-                    {
-                        SetDragging(true);
-                    }
+                    SetDragging(true);
                 }
-                if (touch.phase == TouchPhase.Moved)
+            }
+            if (touch.phase == TouchPhase.Moved)
+            {
+                if (GetDragging() == true)
                 {
-                    if (GetDragging() == true)
+                    if (active)
                     {
                         transform.position = new Vector2(touchPosition.x, touchPosition.y);
                         currentPos = transform.position;
                     }
                 }
-                if (touch.phase == TouchPhase.Ended)
-                {
-                    lastPos = transform.position;
-                    SetDragging(false);
-                    letGo = true;
-                }
             }
+            if (touch.phase == TouchPhase.Ended)
+            {
+                lastPos = transform.position;
+                SetDragging(false);
+                letGo = true;
+            }
+                    
         }
+        
+
 
     }
 
