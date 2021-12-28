@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2263861616676647743}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11, y: 3.96, z: 0}
+  m_LocalPosition: {x: 0, y: 5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3843623681076548193}
@@ -40,11 +40,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3843623681076548193}
   - component: {fileID: 3843623681076548192}
-  - component: {fileID: 3843623681076548194}
   - component: {fileID: 3843623681076548195}
+  - component: {fileID: 1269068978575614025}
   - component: {fileID: 5099439000139143730}
   - component: {fileID: 5528168480942838897}
-  - component: {fileID: 7713216387206117266}
+  - component: {fileID: 289285360311539966}
   m_Layer: 0
   m_Name: Rat
   m_TagString: Rat
@@ -60,8 +60,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3843623681076548199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0957, y: 2.0803, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children:
   - {fileID: 3134531007711323925}
   m_Father: {fileID: 0}
@@ -118,27 +118,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3843623681076548194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3843623681076548199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa381dbc640240a4ea050d4c85e90156, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minX: -3.18
-  maxX: 3.18
-  minY: -1.64
-  maxY: 1.64
-  speed: 0.5
-  minWait: 2
-  maxWait: 6
-  waits: 1
-  destinationBehavior: 0
 --- !u!61 &3843623681076548195
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152,7 +131,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.024208546, y: 1.3934488}
+  m_Offset: {x: -0.021771789, y: 1.9911923}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -163,8 +142,23 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8329558, y: 5.578639}
+  m_Size: {x: 2.4957674, y: 6.774126}
   m_EdgeRadius: 0
+--- !u!114 &1269068978575614025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843623681076548199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22f2bed0081997478801e13d9622d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHolding: 2
+  eatingTransform: {fileID: 3134531007711323925}
+  animator: {fileID: 0}
 --- !u!114 &5099439000139143730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tummyText: {fileID: 0}
-  hungriness: 500
+  hungriness: 20
 --- !u!95 &5528168480942838897
 Animator:
   serializedVersion: 3
@@ -198,7 +192,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &7713216387206117266
+--- !u!111 &289285360311539966
 Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,6 +204,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: b9815ae0a50673347b691656c62f0395, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: b9815ae0a50673347b691656c62f0395, type: 2}
+  - {fileID: 7400000, guid: c75791bf06338f64d92b116d388afee9, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

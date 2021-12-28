@@ -8,10 +8,14 @@ public class Rat : MonoBehaviour
 
     Hunger hunger;
 
+    private bool isEating;
+
     private List<GameObject> holdingList;
     public int maxHolding = 2;
 
     public Transform eatingTransform;
+
+    public Animator animator;
 
 
     // Start is called before the first frame update
@@ -24,13 +28,20 @@ public class Rat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   
+        animator.SetBool("isEating", isEating);
     }
 
     //Returns true if food was eated
     public bool FeedRat(int foodAmount)
     {
-        return hunger.Eat(foodAmount);
+        if (hunger.Eat(foodAmount))
+        {
+            isEating = true;
+            return true;
+        }
+        isEating = false;
+        return false;
+ 
     }
 
     public bool isFull()
@@ -44,8 +55,6 @@ public class Rat : MonoBehaviour
         {
             holdingList.Add(go);
             return true;
-            //go.transform.parent = eatingLocation;
-            //go.transform.position = eatingLocation.position;
         }
         return false;
     }
@@ -54,6 +63,7 @@ public class Rat : MonoBehaviour
     {
         if (IsHolding(go))
         {
+            isEating = false;
             holdingList.Remove(go);
             go.transform.parent = null;
         }

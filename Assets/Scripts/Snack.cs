@@ -12,9 +12,10 @@ public class Snack : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     public Sprite[] spriteArray;
-    public Rat rat;
+    //public Rat rat;
 
     private DragAndDrop dragAndDrop;
+    private GiveRat giveRat;
     private IMovement movement;
 
     private bool dragging = false;
@@ -34,6 +35,7 @@ public class Snack : MonoBehaviour
 
         dragAndDrop = GetComponent<DragAndDrop>();
         movement = GetComponent<IMovement>();
+        giveRat = GetComponent<GiveRat>();
 
         
 
@@ -83,6 +85,7 @@ public class Snack : MonoBehaviour
     {
         if (collision.tag == "Rat")
         {
+            Rat rat = collision.GetComponent<Rat>();
             if (rat.GrabSnack(gameObject))
             {
                 dragAndDrop.active = false;
@@ -92,18 +95,23 @@ public class Snack : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Rat" && rat.IsHolding(gameObject))
+        if (collision.tag == "Rat")
         {
-            DisableMovement();
-            Teleport(rat.eatingTransform);
-            elapsed += Time.fixedDeltaTime;
-            if (elapsed > timeToEatBite)
+            Rat rat = collision.GetComponent<Rat>();
+            if (rat.IsHolding(gameObject))
             {
-                if (rat.FeedRat(biteValue))
+
+                DisableMovement();
+                Teleport(rat.eatingTransform);
+                elapsed += Time.fixedDeltaTime;
+                if (elapsed > timeToEatBite)
                 {
-                    snackBites--;
+                    if (rat.FeedRat(biteValue))
+                    {
+                        snackBites--;
+                    }
+                    elapsed = 0;
                 }
-                elapsed = 0;
             }
         }
     }
@@ -112,6 +120,7 @@ public class Snack : MonoBehaviour
     {
         if (collision.tag == "Rat")
         {
+            Rat rat = collision.GetComponent<Rat>();
             rat.LetGoSnack(gameObject);
             EnableMovement();
             elapsed = 0;
