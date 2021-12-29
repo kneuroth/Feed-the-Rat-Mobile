@@ -10,12 +10,10 @@ public class Snack : MonoBehaviour
     public int biteValue = 1;
     private int snackMaxBites;
 
-    private SpriteRenderer spriteRenderer;
-    public Sprite[] spriteArray;
-    //public Rat rat;
+    public int animationFrames = 5;
+    public Animator animator;
 
     private DragAndDrop dragAndDrop;
-    private GiveRat giveRat;
     private IMovement movement;
 
     private bool dragging = false;
@@ -29,13 +27,10 @@ public class Snack : MonoBehaviour
     void Start()
     {
 
-        //rigidbody2D = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         snackMaxBites = snackBites;
 
         dragAndDrop = GetComponent<DragAndDrop>();
         movement = GetComponent<IMovement>();
-        giveRat = GetComponent<GiveRat>();
 
         
 
@@ -45,17 +40,21 @@ public class Snack : MonoBehaviour
     void Update()
     {
        
-        movement.Step();
+        //if(movement != null)
+        //{
+        //    movement.Step();
+        //}
 
         if(snackBites <= 0)
         {
             Delete(DestroyType.ate);
         }
         //spriteRenderer.sprite = spriteArray[snackBites * spriteArray.Length / snackMaxBites];
-        int spriteIndex = (snackBites * spriteArray.Length / snackMaxBites) - 1;
-        if(spriteIndex >= 0)
+        int snackProgress = (snackBites * animationFrames / snackMaxBites) - 1;
+        if(snackProgress >= 0)
         {
-            spriteRenderer.sprite = spriteArray[spriteIndex];
+            //spriteRenderer.sprite = spriteArray[spriteIndex];
+            animator.SetInteger("snackProgress", snackProgress);
         }
 
         // if dragAndDrop script detects change in dragAllowed variable update snack variable and disable movement script
@@ -63,7 +62,12 @@ public class Snack : MonoBehaviour
         if (dragging != dragUpdated)
         {
             dragging = dragUpdated;
-            movement.canMove = !dragging;
+            if(movement != null)
+            {
+
+
+                movement.canMove = !dragging;
+            }
         }
 
         // if it was just released
@@ -90,6 +94,10 @@ public class Snack : MonoBehaviour
             {
                 dragAndDrop.active = false;
             }
+        }
+        if (collision.tag == "Grater")
+        {
+            Delete(DestroyType.grater);
         }
     }
 
@@ -129,22 +137,42 @@ public class Snack : MonoBehaviour
 
     public void Delete(DestroyType destroyType)
     {
-        Destroy(gameObject);
+        float waitTime = 0f;
+        if(destroyType == DestroyType.grater)
+        {
+            waitTime = .5f;
+            animator.SetBool("isShredding", true);
+        }
+
+        StartCoroutine(WaitForDeathAnimation(waitTime));
+
     }
 
     public void DisableMovement()
     {
-        movement.canMove = false;
+        if (movement != null)
+        {
+            movement.canMove = false;
+        }
     }
 
     public void EnableMovement()
     {
-        movement.canMove = true;
+        if(movement != null)
+        {
+            movement.canMove = true;
+        }
     }
 
     public void Teleport(Transform trans)
     {
         transform.position = trans.position;
         transform.parent = trans;
+    }
+
+    IEnumerator WaitForDeathAnimation(float ms)
+    {
+        yield return new WaitForSeconds(ms);
+        Destroy(gameObject);
     }
 }

@@ -13,7 +13,7 @@ public class DirectionalMovement : MonoBehaviour, IMovement
 
     public Direction direction = Direction.Left;
 
-    public void Step()
+    public void Update()
     {
         if (canMove)
         {

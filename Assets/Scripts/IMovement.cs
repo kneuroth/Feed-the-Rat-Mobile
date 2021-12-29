@@ -6,5 +6,6 @@ public interface IMovement
 {
     bool canMove { get; set; }
 
-    void Step();
+
+    void Update();
 }

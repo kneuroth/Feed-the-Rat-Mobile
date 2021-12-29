@@ -18,8 +18,7 @@ public class LinearMovement : MonoBehaviour, IMovement
 
 
 
-
-    public void Step()
+    public void Update()
     {
         if (canMove)
         {
@@ -28,7 +27,7 @@ public class LinearMovement : MonoBehaviour, IMovement
             {
                 gameObject.SendMessage("Delete", DestroyType.offScreen);
             }
-        }   
+        }
     }
 
     
