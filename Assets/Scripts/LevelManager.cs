@@ -7,6 +7,10 @@ public class LevelManager : MonoBehaviour
 {
     public LevelTimer levelTimer;
     public Rat rat;
+
+
+
+    public float timeScale = 1;
     
     // Start is called before the first frame update
     void Start()
@@ -21,5 +25,14 @@ public class LevelManager : MonoBehaviour
         {
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+
+        Time.timeScale = timeScale;
+    }
+
+    
+    public void Pause()
+    {
+        // Toggle timescale
+        timeScale = timeScale > 0 ? 0 : 1;
     }
 }

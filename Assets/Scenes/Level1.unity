@@ -393,7 +393,6 @@ GameObject:
   - component: {fileID: 1400461887}
   - component: {fileID: 1400461886}
   - component: {fileID: 1400461890}
-  - component: {fileID: 1400461889}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -466,18 +465,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1400461889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1400461885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 162fdfee7eb310640a0073f7ca85ce27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1400461890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTimer: {fileID: 711755467}
   rat: {fileID: 1801636459}
+  timeScale: 1
 --- !u!1001 &1474191956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -581,7 +569,7 @@ PrefabInstance:
       objectReference: {fileID: 774555902}
     - target: {fileID: 5099439000139143730, guid: c7ffe5c406d19ca498dd4c787f14d435, type: 3}
       propertyPath: hungriness
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7ffe5c406d19ca498dd4c787f14d435, type: 3}
@@ -679,6 +667,22 @@ PrefabInstance:
     - target: {fileID: 8297151230562786224, guid: b47b713aa7a8c964eb03d0daceb4ebca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306807136866570861, guid: b47b713aa7a8c964eb03d0daceb4ebca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1400461890}
+    - target: {fileID: 8306807136866570861, guid: b47b713aa7a8c964eb03d0daceb4ebca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306807136866570861, guid: b47b713aa7a8c964eb03d0daceb4ebca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306807136866570861, guid: b47b713aa7a8c964eb03d0daceb4ebca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8754109986735435420, guid: b47b713aa7a8c964eb03d0daceb4ebca, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -819,8 +823,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minX: -1.7
   maxX: 1.7
-  minY: -3.5
-  maxY: -3.5
+  minY: -4
+  maxY: -4
   speed: 2
   minWait: 1
   maxWait: 4
